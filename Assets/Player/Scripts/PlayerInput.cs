@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
@@ -52,15 +50,14 @@ public class PlayerInput : NetworkBehaviour
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                Vector3 pos = camRaycast.GetHitObject().transform.position;
+                Vector3 pos = camRaycast.GetHitObject().transform.localPosition;
                 
                 GetComponent<ChunkManager>().SendChunkUpdateRequestMessage(pos);
                 
             }
         }
 
-        // Toolbelt
-        // If any key is pressed, then check if it's an number key and set active item
+        // If any key is pressed, then check if it's an number key and set active item at Inventory
         if(Input.anyKey)
         {
             for (int i = 0; i < 10; ++i)

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CamRaycast : MonoBehaviour
 {
-    RaycastHit hit;
+    private RaycastHit hit;
     public bool isHit;
 
     private float rayDistance = 5;
@@ -12,7 +10,7 @@ public class CamRaycast : MonoBehaviour
     private Vector3 hitFacePos;
 
     private GameObject currentHit;
-    Color startColor = Color.white;
+    private Color startColor = Color.white;
     
     void FixedUpdate()
     {
@@ -45,7 +43,7 @@ public class CamRaycast : MonoBehaviour
 
     public Vector3 GetHitFacePos()
     {
-        return hit.collider.transform.position + hit.normal;
+        return hit.collider.transform.localPosition + hit.normal;
     }
 
     public GameObject GetHitObject()

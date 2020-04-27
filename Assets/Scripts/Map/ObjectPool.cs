@@ -7,9 +7,10 @@ public class ObjectPool
     public string prefabName;
     public int poolSize;
     public Queue<GameObject> objectPool;
-    GameObject prefab;
+    private GameObject prefab;
 
-    public ObjectPool(string prefabName, int poolSize) {
+    public ObjectPool(string prefabName, int poolSize)
+    {
         this.poolSize = poolSize;
         this.prefabName = prefabName;
 
@@ -20,7 +21,8 @@ public class ObjectPool
     {
         prefab = (GameObject)Resources.Load("Prefabs/Items/" + prefabName);
 
-        if (prefab == null) {
+        if (prefab == null)
+        {
             Debug.Log("ERR: Resource " + prefabName + " not found!");
         }
 
@@ -33,8 +35,10 @@ public class ObjectPool
         }
     }
 
-    public GameObject Dequeue() {
-        if (objectPool.Count <= poolSize / 4) { 
+    public GameObject Dequeue()
+    {
+        if (objectPool.Count <= poolSize / 4)
+        {
             for (int i = 0; i < poolSize; i++)
             {
                 GameObject block = GameObject.Instantiate(prefab);
@@ -44,19 +48,8 @@ public class ObjectPool
             poolSize = poolSize * 2;
         }
 
-        // int usedBlocks = poolSize - objectPool.Count;
-
-        // if (usedBlocks <= poolSize / 4) {
-        //     for (int i = 0; i < poolSize / 2; i++)
-        //     {
-        //         GameObject block = objectPool.Dequeue();
-        //         GameObject.Destroy(block);
-        //     }
-
-        //     poolSize = poolSize / 2;
-        // }
-
-        if (objectPool.Count == 0) {
+        if (objectPool.Count == 0)
+        {
             Debug.Log(prefabName + " pool is empty.");
             return null;
         }
