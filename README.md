@@ -1,1 +1,1 @@
-RED CUBE
+RED CUBE 2
